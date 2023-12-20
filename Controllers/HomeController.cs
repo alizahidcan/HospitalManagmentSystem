@@ -22,6 +22,16 @@ namespace HospitalManagment.Controllers
 
             ViewBag.firstWrite = _localization.Getkey("firstWrite").Value;
             ViewBag.Welcome=_localization.Getkey("Welcome").Value;
+            ViewBag.departmen = _localization.Getkey("departmen").Value;
+            ViewBag.doctor = _localization.Getkey("doctor").Value;
+            ViewBag.appointment = _localization.Getkey("appointment").Value;
+            ViewBag.maindepart = _localization.Getkey("maindepart").Value;
+            ViewBag.departWrite = _localization.Getkey("departWrite").Value;
+            ViewBag.doctorWrite = _localization.Getkey("doctorWrite").Value;
+            ViewBag.maindepartWrite = _localization.Getkey("maindepartWrite").Value;
+            ViewBag.view = _localization.Getkey("view").Value;
+
+
             var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
             return View();
         }
