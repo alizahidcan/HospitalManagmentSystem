@@ -1,0 +1,34 @@
+﻿@model users
+@{
+    ViewData["title"] = "Register";
+}
+
+<main class="form-signin w-25 m-auto">
+    <form method="post">
+        <h1 class="h3 mb-3 fw-normal">Please register</h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+        <div class="form-floating mb-4">
+            <input required class="form-control" id="floatingInput" placeholder="Name" asp-for="Name">
+            <label for="floatingInput" class="form-label" asp-for="Name">Username</label>
+            <span asp-validation-for="Name" class="text-danger small"></span>
+        </div>
+        <div class="form-floating mb-4">
+            <input required class="form-control" id="floatingInput" placeholder="Age" asp-for="age">
+            <label for="floatingInput" class="form-label" asp-for="age">Age</label>
+            <span asp-validation-for="age" class="text-danger small"></span>
+        </div>
+        <div class="form-floating mb-4">
+            <input required maxlength="10" class="form-control" id="floatingInput" placeholder="Phone" asp-for="phone">
+            <label for="floatingInput" class="form-label" asp-for="phone">Phone</label>
+            <span asp-validation-for="phone" class="text-danger small"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input required type="password" class="form-control" id="floatingPassword" placeholder="Password" asp-for="password">
+            <label for="floatingPassword" asp-for="password">Password</label>
+            <span asp-validation-for="password" class="text-danger small"></span>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
+        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+    </form>
+</main>
