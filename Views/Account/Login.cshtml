@@ -1,4 +1,4 @@
-﻿@model users
+﻿@model loginViewModel
 @{
     ViewData["title"] = "Login";
 }
@@ -8,14 +8,14 @@
         <h1 class="h3 mb-3 fw-normal">Please login</h1>
         <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
         <div class="form-floating mb-4">
-            <input required class="form-control" id="floatingInput" placeholder="Name" asp-for="Name">
-            <label for="floatingInput" class="form-label" asp-for="Name">Username</label>
-            <span asp-validation-for="Name" class="text-danger small"></span>
+            <input required class="form-control" id="floatingInput" placeholder="Name" asp-for="username">
+            <label for="floatingInput" class="form-label" asp-for="username">Username</label>
+            <span asp-validation-for="username" class="text-danger small"></span>
         </div>
         <div class="form-floating mb-3">
-            <input required type="password" class="form-control" id="floatingPassword" placeholder="Password" asp-for="password">
-            <label for="floatingPassword" asp-for="password">Password</label>
-            <span asp-validation-for="password" class="text-danger small"></span>
+            <input required type="password" class="form-control" id="floatingPassword" placeholder="Password" asp-for="Password">
+            <label for="floatingPassword" asp-for="Password">Password</label>
+            <span asp-validation-for="Password" class="text-danger small"></span>
         </div>
 
         <div class="form-check text-start my-3">
