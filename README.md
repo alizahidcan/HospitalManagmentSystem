@@ -31,7 +31,7 @@ Bu proje, ASP.NET Core 6 MVC kullanılarak geliştirilmiş bir Hastane Yönetim 
 
 ## Kullanıcı Bilgileri
 - Admin Kullanıcı Adı: OgrenciNuramarasi@sakarya.edu.tr
-- Admin Şifre: sau
+- Admin Şifre: sau123
 
 ## Özellikler
 - Kullanıcıların üye olabileceği bir sayfa.
