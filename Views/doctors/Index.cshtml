@@ -1,10 +1,25 @@
 ﻿@model IEnumerable<HospitalManagment.Models.doctors>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Doctor Admin Panel";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link "  asp-area="" asp-controller="users" asp-action="Index">User Admin Panel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="doctors" asp-action="Index">Doctor Admin Panel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="departments" asp-action="Index">Departmen Admin Panel</a>
+            </li>
+        </ul>
+    </header>
+</div>
+<h1>Doctor Admin Panel</h1>
 
 <p>
     <a asp-action="Create">Create New</a>

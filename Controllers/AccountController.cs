@@ -37,6 +37,8 @@ namespace HospitalManagment.Controllers
                     List<Claim> claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()));
                     claims.Add(new Claim("Name", user.Name));
+                    claims.Add(new Claim(ClaimTypes.Role, user.role));
+
 
                     ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal principal = new ClaimsPrincipal(identity);

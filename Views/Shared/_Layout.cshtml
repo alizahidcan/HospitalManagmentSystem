@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="~/HospitalManagment.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header data-bs-theme="light">
-        <nav class="navbar navbar-expand-md navbar-light">
+    <header data-bs-theme="dark" style="background-color:#222831">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HospitalManagment</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@_localization.Getkey("Welcome")</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -24,6 +24,15 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <ul class="d-flex navbar-nav">
                         @if(User.Identity.IsAuthenticated){
@@ -69,12 +78,12 @@
             </div>
         </nav>
     </header>
-        <main role="main" class="pb-3">
+    <main role="main" class="pb-3">
             @RenderBody()
-        </main>
+     </main>
 
 
-    <footer class="border-top footer text-muted bg-dark">
+    <footer class="footer text-muted" style="background-color:#222831">
         <div class="container text-white">
             &copy; 2023 - HospitalManagment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
