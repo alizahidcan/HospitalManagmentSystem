@@ -8,10 +8,10 @@
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link "  asp-area="" asp-controller="users" asp-action="Index">User Admin Panel</a>
+                <a class="nav-link " asp-area="" asp-controller="users" asp-action="Index">User Admin Panel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="doctors" asp-action="Index">Doctor Admin Panel</a>
+                <a class="nav-link active" aria-current="page"  asp-area="" asp-controller="doctors" asp-action="Index">Doctor Admin Panel</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="departments" asp-action="Index">Departmen Admin Panel</a>
@@ -36,12 +36,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.department)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.workinghours)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -56,12 +50,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.department.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.workinghours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
