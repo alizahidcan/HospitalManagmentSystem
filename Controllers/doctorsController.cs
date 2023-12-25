@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HospitalManagment.Data;
 using HospitalManagment.Models;
 
-namespace HospitalManagment.Controllers
+namespace HospitalManagment.Views
 {
     public class doctorsController : Controller
     {
@@ -48,7 +48,7 @@ namespace HospitalManagment.Controllers
         // GET: doctors/Create
         public IActionResult Create()
         {
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Id");
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace HospitalManagment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,age,name,departmentId,workinghours,Date")] doctors doctors)
+        public async Task<IActionResult> Create([Bind("id,age,name,Image,Description,holidayDay,workingHours,departmentId")] doctors doctors)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace HospitalManagment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Id", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
             return View(doctors);
         }
 
@@ -82,7 +82,7 @@ namespace HospitalManagment.Controllers
             {
                 return NotFound();
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Id", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
             return View(doctors);
         }
 
@@ -91,7 +91,7 @@ namespace HospitalManagment.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,age,name,departmentId,workinghours,Date")] doctors doctors)
+        public async Task<IActionResult> Edit(int id, [Bind("id,age,name,Image,Description,holidayDay,workingHours,departmentId")] doctors doctors)
         {
             if (id != doctors.id)
             {
@@ -118,7 +118,7 @@ namespace HospitalManagment.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Id", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
             return View(doctors);
         }
 

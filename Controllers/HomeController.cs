@@ -1,7 +1,9 @@
+using HospitalManagment.Data;
 using HospitalManagment.Models;
 using HospitalManagment.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 
@@ -11,10 +13,12 @@ namespace HospitalManagment.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private LanguageService _localization;
-        public HomeController(ILogger<HomeController> logger,LanguageService localization)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, LanguageService localization, ApplicationDbContext context)
         {
             _logger = logger;
             _localization = localization;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -54,6 +58,17 @@ namespace HospitalManagment.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        public async Task<IActionResult> departments()
+        {
+            return View(await _context.Departments.ToListAsync());
+        }
+
+        public async Task<IActionResult> doctors()
+        {
+            var applicationDbContext = _context.Doctors.Include(d => d.department);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

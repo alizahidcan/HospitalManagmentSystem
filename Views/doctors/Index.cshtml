@@ -11,7 +11,7 @@
                 <a class="nav-link " asp-area="" asp-controller="users" asp-action="Index">User Admin Panel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page"  asp-area="" asp-controller="doctors" asp-action="Index">Doctor Admin Panel</a>
+                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="doctors" asp-action="Index">Doctor Admin Panel</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="departments" asp-action="Index">Departmen Admin Panel</a>
@@ -34,6 +34,18 @@
                 @Html.DisplayNameFor(model => model.name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.holidayDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.workingHours)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.department)
             </th>
             <th></th>
@@ -49,7 +61,19 @@
                 @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.department.Id)
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.holidayDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.workingHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department.role)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
