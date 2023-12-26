@@ -117,10 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="anaHeader" xml:space="preserve">
+    <value>Education is So Important For Us</value>
+  </data>
+  <data name="anaWrite" xml:space="preserve">
+    <value>Our precious,our doctors, already know everythings but they keep teaching to next generation this is so important for ous!!!</value>
+  </data>
+  <data name="appointment" xml:space="preserve">
+    <value>Make an Appointment</value>
+  </data>
+  <data name="departmen" xml:space="preserve">
+    <value>Our Departments</value>
+  </data>
+  <data name="departWrite" xml:space="preserve">
+    <value>Please click for see to our departments all details.</value>
+  </data>
+  <data name="doctor" xml:space="preserve">
+    <value>Our Doctors</value>
+  </data>
+  <data name="doctorWrite" xml:space="preserve">
+    <value>Please click for see to our doctors all details.</value>
+  </data>
   <data name="firstWrite" xml:space="preserve">
     <value>Just a friend who thinks about your health...</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="lastHeader" xml:space="preserve">
+    <value>Make an Appointment</value>
+  </data>
+  <data name="lastWrite" xml:space="preserve">
+    <value>We are at your service for your health If you didnt register before please go register or if you are registered but you didnt login then please login and make an appointment</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="maindepart" xml:space="preserve">
+    <value>Our Sub-Deparments</value>
+  </data>
+  <data name="maindepartWrite" xml:space="preserve">
+    <value>Please click for see to our sub-departments all details.</value>
+  </data>
+  <data name="poliHeader" xml:space="preserve">
+    <value>Our Doctors and Our Departments</value>
+  </data>
+  <data name="poliWrite" xml:space="preserve">
+    <value>We are at your service with our talented doctors and our state of the art clinics</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>View details</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome</value>
+    <value>CAN Hospital</value>
   </data>
 </root>

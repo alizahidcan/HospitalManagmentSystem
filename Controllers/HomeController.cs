@@ -33,7 +33,20 @@ namespace HospitalManagment.Controllers
             ViewBag.departWrite = _localization.Getkey("departWrite").Value;
             ViewBag.doctorWrite = _localization.Getkey("doctorWrite").Value;
             ViewBag.maindepartWrite = _localization.Getkey("maindepartWrite").Value;
+            ViewBag.Home = _localization.Getkey("Home").Value;
             ViewBag.view = _localization.Getkey("view").Value;
+            ViewBag.privacy = _localization.Getkey("privacy").Value;
+            ViewBag.logout = _localization.Getkey("logout").Value;
+            ViewBag.Login = _localization.Getkey("Login").Value;
+            ViewBag.Register = _localization.Getkey("Register").Value;
+            ViewBag.poliHeader = _localization.Getkey("poliHeader").Value;
+            ViewBag.poliWrite = _localization.Getkey("poliWrite").Value;
+            ViewBag.anaHeader = _localization.Getkey("anaHeader").Value;
+            ViewBag.anaWrite = _localization.Getkey("anaWrite").Value;
+            ViewBag.lastHeader = _localization.Getkey("lastHeader").Value;
+            ViewBag.lastWrite = _localization.Getkey("lastWrite").Value;
+
+
 
 
             var currentCulture = Thread.CurrentThread.CurrentCulture.Name;

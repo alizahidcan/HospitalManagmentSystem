@@ -117,10 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="anaHeader" xml:space="preserve">
+    <value>Eğitim Bizim İçin Çok Önemli</value>
+  </data>
+  <data name="anaWrite" xml:space="preserve">
+    <value>Çok değerli doktorlarımız bilmekle yetinmiyor gelecek nesillere de aktarıyor!!!</value>
+  </data>
+  <data name="appointment" xml:space="preserve">
+    <value>Randevu Al</value>
+  </data>
+  <data name="departmen" xml:space="preserve">
+    <value>Bölümlerimiz</value>
+  </data>
+  <data name="departWrite" xml:space="preserve">
+    <value>Hastanemizin bölümlerinin tüm detaylarını görmek için lütfen tıklayınız.</value>
+  </data>
+  <data name="doctor" xml:space="preserve">
+    <value>Doktorlarımız</value>
+  </data>
+  <data name="doctorWrite" xml:space="preserve">
+    <value>Hastanemizin doctorlarının tüm detaylarını görmek için lütfen tıklayınız.</value>
+  </data>
   <data name="firstWrite" xml:space="preserve">
     <value>Sadece sağlığını düşünen bir arkadaş...</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Anasayfa</value>
+  </data>
+  <data name="lastHeader" xml:space="preserve">
+    <value>Randevu Al</value>
+  </data>
+  <data name="lastWrite" xml:space="preserve">
+    <value>Sağlığınız için hizmetinizdeyiz. Daha önce kayıt olmadıysanız lütfen gidin kayıt olun veya kayıt olduysanız ancak giriş yapmadıysanız lütfen giriş yapın ve randevu alın.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Giriş Yap</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="maindepart" xml:space="preserve">
+    <value>Ana Bilim Dallarımız</value>
+  </data>
+  <data name="maindepartWrite" xml:space="preserve">
+    <value>Hastanemizin ana bilim dallarının tüm detaylarını görmek için lütfen tıklayınız.</value>
+  </data>
+  <data name="poliHeader" xml:space="preserve">
+    <value>Doktorlarımız ve Bölümlerimiz</value>
+  </data>
+  <data name="poliWrite" xml:space="preserve">
+    <value>Yetenekli doktorlarımız ve son teknoloji kliniklerimizle beraber hizmetinizdeyiz.</value>
+  </data>
+  <data name="privacy" xml:space="preserve">
+    <value>Gizlilik</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Kayıt Ol</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>Detaylara göz at</value>
+  </data>
   <data name="Welcome" xml:space="preserve">
-    <value>hoşgeldin</value>
+    <value>CAN Hastanesi</value>
   </data>
 </root>

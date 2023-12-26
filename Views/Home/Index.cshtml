@@ -21,17 +21,17 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
         <div class="col-lg-4">
-            <h2 class="fw-normal">@_localization.Getkey("departmen")</h2>
+            <h2 class="fw-normal fs-3">@_localization.Getkey("departmen")</h2>
             <p>@_localization.Getkey("departWrite")</p>
             <p><a class="btn btn-secondary" asp-controller="Home" asp-action="departments">@_localization.Getkey("view") &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <h2 class="fw-normal">@_localization.Getkey("doctor")</h2>
+            <h2 class="fw-normal fs-3">@_localization.Getkey("doctor")</h2>
             <p>@_localization.Getkey("doctorWrite")</p>
             <p><a class="btn btn-secondary" asp-controller="Home" asp-action="doctors">@_localization.Getkey("view") &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-            <h2 class="fw-normal">@_localization.Getkey("maindepart")</h2>
+            <h2 class="fw-normal fs-3">@_localization.Getkey("maindepart")</h2>
             <p>@_localization.Getkey("maindepartWrite")</p>
             <p><a class="btn btn-secondary" href="#">@_localization.Getkey("view") &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
@@ -42,8 +42,8 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-            <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("poliHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("poliWrite")</p>
         </div>
         <div class="col-md-5">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cdn.pixabay.com/photo/2021/04/03/09/10/doctor-6146905_960_720.png" focusable="false" />
@@ -54,8 +54,8 @@
 
     <div class="row featurette">
         <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
-            <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("anaHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("anaWrite")</p>
         </div>
         <div class="col-md-5 order-md-1">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cdn.totalsororitymove.com/wp-content/uploads/2016/09/86d275d16792d67fc0e7b5b184b8004e.png" focusable="false" />
@@ -66,9 +66,35 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
-            <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-            <p><a class="btn btn-secondary" href="#">@_localization.Getkey("view") &raquo;</a></p>
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("lastHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("lastWrite")</p>
+                <p>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <ul class="d-flex nav">
+                            <li>
+                                <span><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile">@User.FindFirst("Name").Value</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">@_localization.Getkey("logout")</a></span>
+                            </li>
+                        </ul>
+
+                        }
+                        else
+                        {
+                        <ul class="d-flex nav">
+                            <li>
+                                <span class=""><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">@_localization.Getkey("Login")</a></span>
+                            </li>
+                            <li>
+                                <span class=""><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">@_localization.Getkey("Register")</a></span>
+                            </li>
+                        </ul>
+                        
+                       
+                    }
+                </p>
         </div>
         <div class="col-md-5">
             <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cekirge.sirv.com/WP_www.eminealtiay.com/2020/10/randevu.png" focusable="false" />
