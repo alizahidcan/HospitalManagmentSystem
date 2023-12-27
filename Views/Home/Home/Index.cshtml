@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body style="background-color:#00ADB5;color:#EEEEEE">
+<div class="mb-5">
+    <div class="p-5 text-center bg-body-tertiary" style="background-color:#393E46">
+        <div class="container py-5 text-white">
+            <h1 class="text-body-emphasis">@_localization.Getkey("Welcome")</h1>
+            <p class="col-lg-8 mx-auto lead">
+                @_localization.Getkey("firstWrite")
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <h2 class="fw-normal fs-3">@_localization.Getkey("departmen")</h2>
+            <p>@_localization.Getkey("departWrite")</p>
+            <p><a class="btn btn-secondary" asp-controller="Home" asp-action="departments">@_localization.Getkey("view") &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <h2 class="fw-normal fs-3">@_localization.Getkey("doctor")</h2>
+            <p>@_localization.Getkey("doctorWrite")</p>
+            <p><a class="btn btn-secondary" asp-controller="Home" asp-action="doctors">@_localization.Getkey("view") &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <h2 class="fw-normal fs-3">@_localization.Getkey("maindepart")</h2>
+            <p>@_localization.Getkey("maindepartWrite")</p>
+            <p><a class="btn btn-secondary" href="#">@_localization.Getkey("view") &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+    <!-- START THE FEATURETTES -->
+
+    <hr class="border featurette-divider border-1 border-dark opacity-100">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("poliHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("poliWrite")</p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cdn.pixabay.com/photo/2021/04/03/09/10/doctor-6146905_960_720.png" focusable="false" />
+        </div>
+    </div>
+
+    <hr class="border featurette-divider border-1 border-dark opacity-100">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("anaHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("anaWrite")</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cdn.totalsororitymove.com/wp-content/uploads/2016/09/86d275d16792d67fc0e7b5b184b8004e.png" focusable="false" />
+        </div>
+    </div>
+
+    <hr class="border featurette-divider border-1 border-dark opacity-100">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("lastHeader")</h2>
+                <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("lastWrite")</p>
+                <p class="mt-5">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <div class="d-flex">
+                            <p>
+                                <a class="btn btn-secondary" asp-controller="Home" asp-action="doctors">@_localization.Getkey("lastHeader") &raquo;</a>
+                            </p>
+                        </div>
+                        }
+                        else
+                        {
+                        <div class="d-flex">
+                            <p>
+                                <a class="btn btn-secondary mx-5" asp-area="" asp-controller="Account" asp-action="Login">@_localization.Getkey("Login")</a>
+                            </p>
+                            <p>
+                                <a class="btn btn-secondary mx-3" asp-area="" asp-controller="Account" asp-action="Register">@_localization.Getkey("Register")</a>
+                            </p>
+                        </div>
+                    }
+                </p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" style="height:500px;width:500px" src="https://cekirge.sirv.com/WP_www.eminealtiay.com/2020/10/randevu.png" focusable="false" />
+        </div>
+    </div>
+
+    <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+</body>
