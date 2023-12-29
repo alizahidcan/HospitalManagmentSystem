@@ -90,10 +90,6 @@ namespace HospitalManagment.Controllers
             }
             return View(model);
         }
-        public IActionResult Profile()
-        {
-            return View();
-        }
 
         public IActionResult Logout()
         {

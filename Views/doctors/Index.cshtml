@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="departments" asp-action="Index">Departmen Admin Panel</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="appointments" asp-action="Index">Appointment Admin Panel</a>
+            </li>
         </ul>
     </header>
 </div>
@@ -73,7 +76,7 @@
                 @Html.DisplayFor(modelItem => item.workingHours)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.department.role)
+                @Html.DisplayFor(modelItem => item.department.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

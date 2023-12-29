@@ -37,7 +37,7 @@
                     <ul class="d-flex navbar-nav">
                         @if(User.Identity.IsAuthenticated){
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile">@User.FindFirst("Name").Value</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@User.FindFirst("Name").Value</a>
                             </li>
                             <li class="nav-item mx-1">
                                 <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">@_localization.Getkey("logout")</a>

@@ -20,20 +20,15 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <h2 class="fw-normal fs-3">@_localization.Getkey("departmen")</h2>
             <p>@_localization.Getkey("departWrite")</p>
             <p><a class="btn btn-secondary" asp-controller="Home" asp-action="departments">@_localization.Getkey("view") &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <h2 class="fw-normal fs-3">@_localization.Getkey("doctor")</h2>
             <p>@_localization.Getkey("doctorWrite")</p>
             <p><a class="btn btn-secondary" asp-controller="Home" asp-action="doctors">@_localization.Getkey("view") &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <h2 class="fw-normal fs-3">@_localization.Getkey("maindepart")</h2>
-            <p>@_localization.Getkey("maindepartWrite")</p>
-            <p><a class="btn btn-secondary" href="#">@_localization.Getkey("view") &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
     <!-- START THE FEATURETTES -->
@@ -68,32 +63,15 @@
         <div class="col-md-7">
                 <h2 class="featurette-heading fw-normal lh-1 display-5">@_localization.Getkey("lastHeader")</h2>
                 <p class="lead mt-4" style="font-size:x-large">@_localization.Getkey("lastWrite")</p>
-                <p>
+                <p class="mt-5">
                         @if (User.Identity.IsAuthenticated)
                         {
-                        <ul class="d-flex nav">
-                            <li>
-                                <span><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Profile">@User.FindFirst("Name").Value</a></span>
-                            </li>
-                            <li>
-                                <span><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">@_localization.Getkey("logout")</a></span>
-                            </li>
-                        </ul>
-
+                        <div class="d-flex">
+                            <p>
+                                <a class="btn btn-secondary" asp-controller="appointments" asp-action="appointment">@_localization.Getkey("lastHeader") &raquo;</a>
+                            </p>
+                        </div>
                         }
-                        else
-                        {
-                        <ul class="d-flex nav">
-                            <li>
-                                <span class=""><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">@_localization.Getkey("Login")</a></span>
-                            </li>
-                            <li>
-                                <span class=""><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">@_localization.Getkey("Register")</a></span>
-                            </li>
-                        </ul>
-                        
-                       
-                    }
                 </p>
         </div>
         <div class="col-md-5">

@@ -15,5 +15,7 @@ namespace HospitalManagment.Data
 
         public DbSet<users> Users { get; set; }
 
+        public DbSet<appointment> Appointments { get; set; }
+
     }
 }
