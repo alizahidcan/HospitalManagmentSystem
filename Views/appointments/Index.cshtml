@@ -4,7 +4,7 @@
     ViewData["Title"] = "Appointment Admin Panel";
 }
 
-<main class=>
+
     <div class="container">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
@@ -27,9 +27,7 @@
 
     <h1 class="text-center align-content-center display-4">Appointment Admin Panel</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -40,7 +38,7 @@
                 @Html.DisplayNameFor(model => model.time)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.users)
+                @Html.DisplayNameFor(model => model.userName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.doctors)
@@ -61,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.users.Name)
+                @Html.DisplayFor(modelItem => item.userName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.doctors.name)

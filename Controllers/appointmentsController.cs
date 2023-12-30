@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HospitalManagment.Data;
 using HospitalManagment.Models;
 
-namespace HospitalManagment.Views
+namespace HospitalManagment.Controllers
 {
     public class appointmentsController : Controller
     {
@@ -20,17 +20,9 @@ namespace HospitalManagment.Views
         }
 
         // GET: appointments
-
-        public IActionResult appointment()
-        {
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name");
-            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "name");
-            ViewData["userId"] = new SelectList(_context.Users, "Id", "Name");
-            return View();
-        }
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Appointments.Include(a => a.department).Include(a => a.doctors).Include(a => a.users);
+            var applicationDbContext = _context.Appointments.Include(a => a.department).Include(a => a.doctors);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -45,7 +37,6 @@ namespace HospitalManagment.Views
             var appointment = await _context.Appointments
                 .Include(a => a.department)
                 .Include(a => a.doctors)
-                .Include(a => a.users)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (appointment == null)
             {
@@ -56,32 +47,6 @@ namespace HospitalManagment.Views
         }
 
         // GET: appointments/Create
-        public IActionResult Create()
-        {
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name");
-            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "name");
-            ViewData["userId"] = new SelectList(_context.Users, "Id", "Name");
-            return View();
-        }
-
-        // POST: appointments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,justDate,time,userId,doctorId,departmentId")] appointment appointment)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(appointment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", appointment.departmentId);
-            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "id", appointment.doctorId);
-            ViewData["userId"] = new SelectList(_context.Users, "Id", "role", appointment.userId);
-            return View(appointment);
-        }
 
         // GET: appointments/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -96,9 +61,8 @@ namespace HospitalManagment.Views
             {
                 return NotFound();
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", appointment.departmentId);
-            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "id", appointment.doctorId);
-            ViewData["userId"] = new SelectList(_context.Users, "Id", "role", appointment.userId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name", appointment.departmentId);
+            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "Name", appointment.doctorId);
             return View(appointment);
         }
 
@@ -107,7 +71,7 @@ namespace HospitalManagment.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,justDate,time,userId,doctorId,departmentId")] appointment appointment)
+        public async Task<IActionResult> Edit(int id, [Bind("id,justDate,time,userName,doctorId,departmentId")] appointment appointment)
         {
             if (id != appointment.id)
             {
@@ -134,9 +98,8 @@ namespace HospitalManagment.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", appointment.departmentId);
-            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "id", appointment.doctorId);
-            ViewData["userId"] = new SelectList(_context.Users, "Id", "role", appointment.userId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name", appointment.departmentId);
+            ViewData["doctorId"] = new SelectList(_context.Doctors, "id", "name", appointment.doctorId);
             return View(appointment);
         }
 
@@ -151,7 +114,6 @@ namespace HospitalManagment.Views
             var appointment = await _context.Appointments
                 .Include(a => a.department)
                 .Include(a => a.doctors)
-                .Include(a => a.users)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (appointment == null)
             {

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using System.Diagnostics;
 
 
@@ -72,6 +73,98 @@ namespace HospitalManagment.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        public IActionResult appointment()
+        {
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name");
+
+            if (ViewData["departmentId"]=="1") {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+                doctor.Add(new SelectListItem() { Text="Dr.Gregory House",Value="1"});
+                ViewBag.doctor = doctor;
+            }
+            else if(ViewData["departmentId"] == "2")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+                doctor.Add(new SelectListItem() { Text = "Dr.James Wilson", Value = "4" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "3")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Allison Cameron", Value = "2" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "4")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Eric Foreman", Value = "3" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "5")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "6")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "7")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
+                ViewBag.doctor = doctor;
+            }
+            else if (ViewData["departmentId"] == "8")
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+
+                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
+                ViewBag.doctor = doctor;
+            }
+            else
+            {
+                List<SelectListItem> doctor = new List<SelectListItem>();
+                doctor.Add(new SelectListItem() { Text = "Dr.James Wilson", Value = "4" });
+                ViewBag.doctor = doctor;
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult appointment(takeAppointment appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                appointment appo = new()
+                {
+                    userName = @User.FindFirst("Name").Value,
+                    justDate = appointment.justDate,
+                    time = appointment.time,
+                    departmentId = appointment.departmentId,
+                    doctorId = appointment.doctorId,
+                };
+                _context.Appointments.Add(appo);
+                int affectedRowCount = _context.SaveChanges();
+                if (affectedRowCount == 0)
+                {
+                    ModelState.AddModelError("", "User couldnt be added");
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            return View(appointment);
         }
 
         public async Task<IActionResult> departments()

@@ -48,7 +48,7 @@ namespace HospitalManagment.Views
         // GET: doctors/Create
         public IActionResult Create()
         {
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role");
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace HospitalManagment.Views
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name", doctors.departmentId);
             return View(doctors);
         }
 
@@ -82,7 +82,7 @@ namespace HospitalManagment.Views
             {
                 return NotFound();
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name", doctors.departmentId);
             return View(doctors);
         }
 
@@ -118,7 +118,7 @@ namespace HospitalManagment.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "role", doctors.departmentId);
+            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name", doctors.departmentId);
             return View(doctors);
         }
 
