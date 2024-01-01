@@ -123,8 +123,14 @@
   <data name="anaWrite" xml:space="preserve">
     <value>Çok değerli doktorlarımız bilmekle yetinmiyor gelecek nesillere de aktarıyor!!!</value>
   </data>
+  <data name="appo" xml:space="preserve">
+    <value>Randevularınız</value>
+  </data>
   <data name="appointment" xml:space="preserve">
     <value>Randevu Al</value>
+  </data>
+  <data name="appoWrite" xml:space="preserve">
+    <value>Eğer Gelemiyorsanız Bizi Arayın veya İptal Edin</value>
   </data>
   <data name="departmen" xml:space="preserve">
     <value>Bölümlerimiz</value>

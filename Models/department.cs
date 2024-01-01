@@ -15,7 +15,7 @@ namespace HospitalManagment.Models
         public string Description { get; set; }
 
         [Required]
-        public string role { get; set; } = "klinik";
+        public string role { get; set; } = "Clinic";
 
     }
 }

@@ -123,8 +123,14 @@
   <data name="anaWrite" xml:space="preserve">
     <value>Our precious,our doctors, already know everythings but they keep teaching to next generation this is so important for ous!!!</value>
   </data>
+  <data name="appo" xml:space="preserve">
+    <value>Your Appointments</value>
+  </data>
   <data name="appointment" xml:space="preserve">
     <value>Make an Appointment</value>
+  </data>
+  <data name="appoWrite" xml:space="preserve">
+    <value>If You Dont Come Please Call Us or Delete Your Appointment</value>
   </data>
   <data name="departmen" xml:space="preserve">
     <value>Our Departments</value>

@@ -63,29 +63,33 @@ namespace HospitalManagment.Controllers
         public IActionResult Register(registerViewModel model)
         {
             if (ModelState.IsValid) {
-                if(_dbContext.Users.Any(x=>x.Name.ToLower()==model.username.ToLower())) {
+                if (_dbContext.Users.Any(x => x.Name.ToLower() == model.username.ToLower()))
+                {
                     ModelState.AddModelError(nameof(model.username), "Username is exist");
                     View(model);
                 }
-
-                string md5Salt = _configuration.GetValue<string>("AppSettings:MD5Salt");
-                string saltedPassword = model.Password + md5Salt;
-                string hashedPassword = saltedPassword.MD5();
-                users user = new()
-                {
-                    Name = model.username,
-                    password = hashedPassword,
-                    phone =model.phone,
-                    age = model.age,
-                };
-                _dbContext.Users.Add(user);
-                int affectedRowCount = _dbContext.SaveChanges();
-                if (affectedRowCount == 0) {
-                    ModelState.AddModelError("", "User couldnt be added");                
-                }
                 else
                 {
-                    return  RedirectToAction(nameof(Login));
+                    string md5Salt = _configuration.GetValue<string>("AppSettings:MD5Salt");
+                    string saltedPassword = model.Password + md5Salt;
+                    string hashedPassword = saltedPassword.MD5();
+                    users user = new()
+                    {
+                        Name = model.username,
+                        password = hashedPassword,
+                        phone = model.phone,
+                        age = model.age,
+                    };
+                    _dbContext.Users.Add(user);
+                    int affectedRowCount = _dbContext.SaveChanges();
+                    if (affectedRowCount == 0)
+                    {
+                        ModelState.AddModelError("", "User couldnt be added");
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(Login));
+                    }
                 }
             }
             return View(model);

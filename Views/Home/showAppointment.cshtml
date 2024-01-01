@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HospitalManagment.Models.appointment>
+
+<body class="bg-dark text-white">
+    <table class="table">
+    <tbody class="">
+            <h1 class="text-center mt-5">@_localization.Getkey("appoWrite")</h1>
+
+        @foreach (var item in Model)
+        {
+                DateTime dt = DateTime.Now;
+
+                @if (item.userName == User.FindFirst("Name").Value && model.justDate < DateOnly.FromDateTime(dt))
+                {
+                <dl class="row w-50 m-auto mt-5 mb-3" style="border:solid;border-color:gray;">
+                    <dt class="col-sm-6">
+                        Date:
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => item.justDate)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Time:
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => item.time)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Doctors Name:
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => item.doctors.name)
+                    </dd>
+                    <dt class="col-sm-6">
+                        Departments Name:
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => item.department.Name)
+                    </dd>
+                    <dd class="text-end">
+                    <a asp-action="ShowAppointmentDelete" asp-route-id="@item.id">Delete</a>
+                    </dd>
+                </dl>
+                
+            }
+        }
+    </tbody>
+    </table>
+</body>

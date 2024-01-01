@@ -1,31 +1,70 @@
-﻿@model HospitalManagment.Models.appointment
+﻿@model takeAppointment
 
 @{
     ViewData["Title"] = "Make an Appointment";
 }
-<div class="w-50 m-auto">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+
+<body class="bg-dark text-white">
+<div class="w-50 m-auto mt-5">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="justDate" class="control-label"></label>
-                <input type="date" asp-for="justDate" class="form-control" />
+
+            <div class="form-group mt-2">
+                <label asp-for="justDate" class="control-label" >Select Date</label>
+                <input id="dateInput" type="date" asp-for="justDate" class="form-control" />
                 <span asp-validation-for="justDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="time" class="control-label"></label>
+            <div class="form-group mt-2">
+                <label asp-for="time" class="control-label">Select Time</label>
                 <input type="time" asp-for="time" class="form-control" />
                 <span asp-validation-for="time" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="doctorId" class="control-label"></label>
-                <select asp-for="doctorId" class="form-control" asp-items="ViewBag.doctor"></select>
-                
+            <div class="form-group mt-2">
+                <label asp-for="SelectedDepartmentId" >Select Department</label>
+                @Html.DropDownListFor(m => m.SelectedDepartmentId, Model.DepartmentData, "Please Select", new { @class = "dropdown form-control" })
+                <span asp-validation-for="SelectedDepartmentId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="departmentId" class="control-label"></label>
-                <select asp-for="departmentId" class="form-control" asp-items="ViewBag.departmentId"></select>
+            <div class="form-group mt-2">
+                <label asp-for="SelectedDoctorId" >Select Doctor</label>
+                @Html.DropDownListFor(m => m.SelectedDoctorId, Model.DoctorData, "Please Select", new { @class = "dropdown form-control" })
+                <span asp-validation-for="SelectedDoctorId" class="text-danger"></span>
             </div>
             
-            <button class="btn btn-primary w-100 py-2" type="submit">Make an Apppointment</button>
+            <button class="btn btn-secondary w-100 py-2 mt-3" type="submit">Make an Apppointment</button>
         </form>
 </div>
+<script>
+    $("#SelectedDepartmentId").change(function () {
+        var ddlDepartment = $(this);
+        var departmentId = ddlDepartment.val();
+        if (departmentId != "") {
+
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetCitiesByCountry", "Home")' + '/' + departmentId,
+                beforeSend: function () {
+                    // ajax isteği öncesi doktorlar silinir.
+                    $("#SelectedDoctorId option").not(":first").remove();
+                }
+            }).done(function (result) {
+                console.log(result);
+                // json formatında departmana ait doktorlar gelir..
+                // her biri için option elementi oluşturulur
+                // doktorlar(id=SelectedDoktorId) dropdownlist e eklenir.
+                for (var i = 0; i < result.length; i++) {
+                    var doctor = result[i];
+                    var opt = $("<option></option>");
+                    opt.val(doctor.id);
+                    opt.text(doctor.name);
+                    $("#SelectedDoctorId").append(opt);
+                }
+            });
+        } else {
+            $("#SelectedDoctorId option").not(":first").remove();
+        }
+    });
+</script>
+</body>

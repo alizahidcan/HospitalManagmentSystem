@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NuGet.Protocol.Plugins;
 using System.Diagnostics;
 
@@ -47,8 +48,8 @@ namespace HospitalManagment.Controllers
             ViewBag.anaWrite = _localization.Getkey("anaWrite").Value;
             ViewBag.lastHeader = _localization.Getkey("lastHeader").Value;
             ViewBag.lastWrite = _localization.Getkey("lastWrite").Value;
-
-
+            ViewBag.appo = _localization.Getkey("appo").Value;
+            ViewBag.appoWrite = _localization.Getkey("appoWrite").Value;
 
 
             var currentCulture = Thread.CurrentThread.CurrentCulture.Name;
@@ -77,81 +78,100 @@ namespace HospitalManagment.Controllers
 
         public IActionResult appointment()
         {
-            ViewData["departmentId"] = new SelectList(_context.Departments, "Id", "Name");
+            SelectList departmentData = new SelectList(_context.Departments, "Id", "Name");
 
-            if (ViewData["departmentId"]=="1") {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-                doctor.Add(new SelectListItem() { Text="Dr.Gregory House",Value="1"});
-                ViewBag.doctor = doctor;
-            }
-            else if(ViewData["departmentId"] == "2")
+            takeAppointment model = new takeAppointment()
             {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-                doctor.Add(new SelectListItem() { Text = "Dr.James Wilson", Value = "4" });
-                ViewBag.doctor = doctor;
-            }
-            else if (ViewData["departmentId"] == "3")
-            {
-                List<SelectListItem> doctor = new List<SelectListItem>();
+                DepartmentData = departmentData,
 
-                doctor.Add(new SelectListItem() { Text = "Dr.Allison Cameron", Value = "2" });
-                ViewBag.doctor = doctor;
-            }
-            else if (ViewData["departmentId"] == "4")
-            {
-                List<SelectListItem> doctor = new List<SelectListItem>();
+                // Baþlangýçta þehir verisi yoktur ama kayýt düzenleme yaparsanýz burayý da doldurunuz.
+                DoctorData = new SelectList(new List<doctors>())
+            };
+            
+            return View(model);
+        }
 
-                doctor.Add(new SelectListItem() { Text = "Dr.Eric Foreman", Value = "3" });
-                ViewBag.doctor = doctor;
-            }
-            else if (ViewData["departmentId"] == "5")
+        [HttpPost]
+        public IActionResult appointment(takeAppointment model)
+        {           
+                SelectList departmentData = new SelectList(_context.Departments, "Id", "Name");
+                SelectList doctorData = new SelectList(_context.Doctors, "id", "name");
+                model.DepartmentData = departmentData;
+                model.DoctorData = doctorData;
+                DateTime dt = DateTime.Now;
+            var start = TimeOnly.Parse("9:00 AM");
+            var finish = TimeOnly.Parse("6:00 PM");
+            if (model.justDate < DateOnly.FromDateTime(dt))
             {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-
-                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
-                ViewBag.doctor = doctor;
+                ModelState.AddModelError(nameof(model.justDate), "Please dont select past :)");
+                return View(model);
             }
-            else if (ViewData["departmentId"] == "6")
-            {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-
-                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
-                ViewBag.doctor = doctor;
-            }
-            else if (ViewData["departmentId"] == "7")
-            {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-
-                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
-                ViewBag.doctor = doctor;
-            }
-            else if (ViewData["departmentId"] == "8")
-            {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-
-                doctor.Add(new SelectListItem() { Text = "Dr.Gregory House", Value = "1" });
-                ViewBag.doctor = doctor;
+            else if (model.time<start||model.time>finish) {
+                ModelState.AddModelError(nameof(model.time), "Our Working hours is : 09-18");
+                return View(model);
             }
             else
             {
-                List<SelectListItem> doctor = new List<SelectListItem>();
-                doctor.Add(new SelectListItem() { Text = "Dr.James Wilson", Value = "4" });
-                ViewBag.doctor = doctor;
-            }
-            return View();
-        }
-        [HttpPost]
-        public IActionResult appointment(takeAppointment appointment)
-        {
-            if (ModelState.IsValid)
-            {
+                if(_context.Appointments.Any(x=>x.justDate==model.justDate)) { 
+                    if(_context.Appointments.Any(x=>x.doctorId==model.SelectedDoctorId))
+                    {
+                        if(_context.Appointments.Any(x=>x.time==model.time))
+                        {
+                            ModelState.AddModelError(nameof(model.time), "This time is selected by different user");
+                            return View(model);
+                        }
+                        else
+                        {
+                            appointment appo = new()
+                            {
+                                userName = @User.FindFirst("Name").Value,
+                                justDate = model.justDate,
+                                time = model.time,
+                                departmentId = model.SelectedDepartmentId,
+                                doctorId = model.SelectedDoctorId,
+                            };
+                            _context.Appointments.Add(appo);
+                            int affectedRowCount = _context.SaveChanges();
+                            if (affectedRowCount == 0)
+                            {
+                                ModelState.AddModelError("", "User couldnt be added");
+                            }
+                            else
+                            {
+                                return RedirectToAction(nameof(Index));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        appointment appo = new()
+                        {
+                            userName = @User.FindFirst("Name").Value,
+                            justDate = model.justDate,
+                            time = model.time,
+                            departmentId = model.SelectedDepartmentId,
+                            doctorId = model.SelectedDoctorId,
+                        };
+                        _context.Appointments.Add(appo);
+                        int affectedRowCount = _context.SaveChanges();
+                        if (affectedRowCount == 0)
+                        {
+                            ModelState.AddModelError("", "User couldnt be added");
+                        }
+                        else
+                        {
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
+                else { 
                 appointment appo = new()
                 {
                     userName = @User.FindFirst("Name").Value,
-                    justDate = appointment.justDate,
-                    time = appointment.time,
-                    departmentId = appointment.departmentId,
-                    doctorId = appointment.doctorId,
+                    justDate = model.justDate,
+                    time = model.time,
+                    departmentId = model.SelectedDepartmentId,
+                    doctorId = model.SelectedDoctorId,
                 };
                 _context.Appointments.Add(appo);
                 int affectedRowCount = _context.SaveChanges();
@@ -163,8 +183,55 @@ namespace HospitalManagment.Controllers
                 {
                     return RedirectToAction(nameof(Index));
                 }
+                }
             }
+            
+            return View(model);
+        }
+
+        public async Task<IActionResult> ShowAppointment()
+        {
+            var applicationDbContext = _context.Appointments.Include(a => a.department).Include(a => a.doctors);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        public async Task<IActionResult> ShowAppointmentDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var appointment = await _context.Appointments
+                .Include(a => a.department)
+                .Include(a => a.doctors)
+                .FirstOrDefaultAsync(m => m.id == id);
+            if (appointment == null)
+            {
+                return NotFound();
+            }
+
             return View(appointment);
+        }
+
+        // POST: appointments/Delete/5
+        [HttpPost, ActionName("ShowAppointmentDelete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var appointment = await _context.Appointments.FindAsync(id);
+            if (appointment != null)
+            {
+                _context.Appointments.Remove(appointment);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ShowAppointment));
+        }
+
+        public JsonResult GetCitiesByCountry(int id)
+        {
+            return Json(_context.Doctors.Where(doc => doc.departmentId == id).ToList());
         }
 
         public async Task<IActionResult> departments()
