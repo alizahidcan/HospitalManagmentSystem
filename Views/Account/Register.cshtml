@@ -2,10 +2,10 @@
 @{
     ViewData["title"] = "Register";
 }
-
-<main class="form-signin w-25 m-auto">
+<body class="bg-dark">
+<main class="form-signin w-25 m-auto mt-5">
     <form method="post">
-        <h1 class="h3 mb-3 fw-normal">Please register</h1>
+        <h1 class="h3 mb-3 fw-normal text-white mt-5">Please register</h1>
         <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
         <div class="form-floating mb-4">
             <input required class="form-control" id="floatingInput" placeholder="Name" asp-for="username">
@@ -28,7 +28,8 @@
             <span asp-validation-for="Password" class="text-danger small"></span>
         </div>
 
-        <button class="btn btn-primary w-100 py-2" type="submit">Register</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+        <button class="btn btn-secondary w-100 py-2" type="submit">Register</button>
+        <p class="mt-5 mb-3 text-white">&copy; 2017–2023</p>
     </form>
-</main>
+    </main>
+</body>
